@@ -7,23 +7,21 @@ import { productReducer } from './products/store/product.reducer';
 import { ProductEffects } from './products/store/product.effects';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './core/navbar/navbar.component';
-import { ProductListComponent } from './products/product-list/product-list.component';
-import { ProductDetailsComponent } from './products/product-details/product-details.component';
-import { CartDropdownComponent } from './cart/cart-dropdown/cart-dropdown.component';
 import { AppRoutingModule } from './app-routing.module';
+import { CommonModule } from '@angular/common';
+import { ProductListComponent } from './products/product-list/product-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    ProductListComponent,
-    ProductDetailsComponent,
-    CartDropdownComponent
+    ProductListComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    CommonModule,
     StoreModule.forRoot({ products: productReducer }),
     EffectsModule.forRoot([ProductEffects])
   ],

@@ -1,25 +1,29 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { of } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
+import { of } from 'rxjs';
+import { ProductService } from '../product.service';
 import { loadProducts, loadProductsSuccess, loadProductsFailure } from './product.actions';
-import { Product } from '../product';
+import { ApiResponse, Product } from '../product'; // Import the necessary types
 
 @Injectable()
 export class ProductEffects {
-  constructor(
-    private actions$: Actions,
-    private http: HttpClient
-  ) {}
-
-  loadProducts$ = createEffect(() => this.actions$.pipe(
-    ofType(loadProducts),
-    mergeMap(() => this.http.get<Product[]>('https://dummyjson.com/products?limit=100')
-      .pipe(
-        map(products => loadProductsSuccess({ products })),
-        catchError(error => of(loadProductsFailure({ error: error.message })))
+  loadProducts$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(loadProducts),
+      mergeMap(() =>
+        this.productService.getProducts().pipe(
+          // Expecting ApiResponse type from the API
+          map((response: ApiResponse) => response.products), // Extracting products array
+          map(products => loadProductsSuccess({ products })), // Dispatching with extracted products
+          catchError(error => of(loadProductsFailure({ error })))
+        )
       )
     )
-  ));
+  );
+
+  constructor(
+    private actions$: Actions,
+    private productService: ProductService
+  ) {}
 }
