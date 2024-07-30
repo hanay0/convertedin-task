@@ -15,7 +15,7 @@ import { ProductsRoutingModule } from './products-routing.module';
   ],
   imports: [
     CommonModule,
-    AppRoutingModule,
+    // AppRoutingModule,// this was causing the error in the console about the route
     RouterModule,
     ProductsRoutingModule
   ]

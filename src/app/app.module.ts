@@ -10,12 +10,14 @@ import { NavbarComponent } from './core/navbar/navbar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CommonModule } from '@angular/common';
 import { ProductListComponent } from './products/product-list/product-list.component';
+import { SidebarComponent } from './core/navbar/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    ProductListComponent
+    ProductListComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
