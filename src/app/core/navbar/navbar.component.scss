@@ -1,0 +1,47 @@
+.navbar {
+    height: 63px;
+    background-color: #002985;
+    
+    #navbarSearch {
+        form {
+            width: 80%;
+        }
+    }
+
+    .navbar-brand {
+        img {
+            width: 102px;
+            height: 28px;
+        }
+    }
+}
+
+.products-categories {
+    height: 38px;
+    background-color: #E6ECFC;
+
+    ul {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+
+        li {
+            margin-right: 24px;
+
+            a {
+                text-decoration: none;
+                color: #101828;
+                font-weight: 600;
+                font-size: 13px;
+                line-height: 15.73px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .products-categories {
+        height: auto;
+    }
+}

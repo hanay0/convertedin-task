@@ -1,0 +1,33 @@
+.sidebar {
+    margin-top: 40px;
+
+    .categories {
+        padding-left: 14px;
+        padding-top: 7.33px;
+        // overflow: hidden;
+
+        ul {
+            &.categories {
+                width: 100%;
+                max-height: 345px;
+                overflow: scroll;
+                list-style: none;
+                padding: 5px 0 20px 14px;
+                border-left: 1px solid #EAECF0;
+                li {
+                    margin: 20px 0;
+                    a {
+                        font-size: 16px;
+                        font-weight: 400;
+                        color: #344054;
+                        text-decoration: none;
+    
+                        &.active {
+                            font-weight: 600;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

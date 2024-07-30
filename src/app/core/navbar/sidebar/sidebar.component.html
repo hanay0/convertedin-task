@@ -1,0 +1,10 @@
+<section class="sidebar d-flex">
+    <div class="categories d-flex flex-column">
+        <h6 class="fw-bold">Category</h6>
+        <ul class="categories" *ngIf="categories">
+            <li *ngFor="let category of categories">
+                <a href="#">{{ category.name }}</a>
+            </li>
+        </ul>
+    </div>
+</section>
