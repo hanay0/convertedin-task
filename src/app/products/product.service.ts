@@ -55,4 +55,40 @@ export class ProductService {
       })
     );
   }
+
+  // Create an array of objects with brand names and their counts
+  getBrandCounts(): { brand_name: string, count: number }[] {
+    const cachedData = localStorage.getItem(this.cacheKey);
+    if (!cachedData) {
+      console.warn('No product data found in cache');
+      return [];
+    }
+
+    const response = JSON.parse(cachedData) as ApiResponse;
+    const brandCountMap: { [brandName: string]: number } = {};
+
+    response.products.forEach((product: Product) => {
+      if (product.brand) {
+        if (!brandCountMap[product.brand]) {
+          brandCountMap[product.brand] = 0;
+        }
+        brandCountMap[product.brand] += 1; // Increment count for the brand
+      }
+    });
+
+    // Convert the map to an array of objects
+    return Object.keys(brandCountMap).map(brandName => ({
+      brand_name: brandName,
+      count: brandCountMap[brandName]
+    }));
+  }
+
+  /**
+   * method to log array of objects , which contains brand names and it's count
+   * data source : cachedData in LocalStorage
+   */
+  logBrandCounts(): void {
+    const brandCounts = this.getBrandCounts();
+    console.log('Brand Counts:', brandCounts);
+  }
 }
