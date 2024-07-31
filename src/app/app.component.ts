@@ -9,6 +9,7 @@ export class AppComponent {
   title = 'convertedin-task';
   selectedCategory: string = '';
   selectedCategoryName: string = '';
+  searchQuery: string = '';  // Add this property
 
   onCategorySelected(event: { slug: string, name: string }): void {
     this.selectedCategory = event.slug;

@@ -1,5 +1,5 @@
 <router-outlet>
-  <app-navbar></app-navbar>
+  <app-navbar (searchQueryChanged)="searchQuery = $event"></app-navbar>
   <section>
     <div class="container-fluid">
       <div class="row">
@@ -7,7 +7,7 @@
           <app-sidebar (categorySelected)="onCategorySelected($event)"></app-sidebar>
         </div>
         <div class="col-9" id="products-wrapper">
-          <app-product-list [selectedCategory]="selectedCategory" [selectedCategoryName]="selectedCategoryName"></app-product-list>
+          <app-product-list [selectedCategory]="selectedCategory" [selectedCategoryName]="selectedCategoryName" [searchQuery]="searchQuery"></app-product-list>
         </div>
       </div>
     </div>
