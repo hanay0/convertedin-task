@@ -41,6 +41,7 @@
               "src/styles.scss"
             ],
             "scripts": [
+              "src/assets/js/popper.min.js",
               "src/assets/js/bootstrap.min.js"
             ]
           },

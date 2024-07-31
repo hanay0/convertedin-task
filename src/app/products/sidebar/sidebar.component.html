@@ -11,13 +11,22 @@
     <div class="brands d-flex flex-column mt-4">
         <h6 class="fw-bold">Brand</h6>
         <div *ngIf="noBrands">No brands specified</div>
+        
         <ul class="brands-list" *ngIf="!noBrands">
-          <li *ngFor="let brand of brandCounts">
-            <input
+          <li class="d-flex justify-content-between align-items-center" *ngFor="let brand of brandCounts">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" [value]="brand.brand_name" id="flexCheckDefault">
+              <label class="form-check-label" for="flexCheckDefault">
+                {{ brand.brand_name }}
+              </label>
+            </div>
+            <span class="count">{{ brand.count }}</span>
+
+            <!-- <input
               type="checkbox"
               [value]="brand.brand_name"
             />
-            {{ brand.brand_name }} ({{ brand.count }})
+            {{ brand.brand_name }} ({{ brand.count }}) -->
           </li>
         </ul>
       </div>

@@ -34,4 +34,25 @@
             }
         }
     }
+
+    .brands {
+        padding-left: 14px;
+        padding-top: 7.33px;
+
+        ul {
+            list-style: none;
+
+            li {
+                margin-bottom: 15px;
+
+                .count {
+                    padding: 2px 15px;
+                    border: 1px solid #F9FAFB;
+                    color: #344054;
+                    background-color: #efefef;
+                    border-radius: 15px;
+                }
+            }
+        }
+    }
 }

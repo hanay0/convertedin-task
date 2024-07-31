@@ -1,10 +1,10 @@
 <section>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-3">
+        <div class="col-5 col-lg-3">
           <app-sidebar (categorySelected)="onCategorySelected($event)"></app-sidebar>
         </div>
-        <div class="col-9" id="products-wrapper">
+        <div class="col-7 col-lg-9" id="products-wrapper">
             <app-product-list [selectedCategory]="selectedCategory" [selectedCategoryName]="selectedCategoryName" [searchQuery]="searchQuery"></app-product-list>
         </div>
       </div>

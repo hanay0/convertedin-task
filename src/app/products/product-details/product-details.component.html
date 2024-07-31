@@ -1,8 +1,8 @@
-<div class="container-fluid" id="product-details-wrapper" *ngIf="product$ | async as product">
-    <div class="row">
+<div class="container" id="product-details-wrapper" *ngIf="product$ | async as product">
+    <div class="row top_info">
       <div class="col-md-5">
         <div class="row">
-          <div class="col-md-3 d-flex flex-column">
+          <div class="col-3 d-flex" id="product__images">
             <img *ngFor="let item of product.images" src="{{item}}" alt="product">
           </div>
           <div class="col-md-9">
@@ -10,6 +10,7 @@
           </div>
         </div>
       </div>
+
       <div class="col-md-4 d-flex flex-column align-items-start" id="product__info">
         <h1>{{ product.title }}</h1>
         <p>{{ product.description }}</p>
@@ -39,14 +40,14 @@
           <a href="https://www.converted.in/">View more details</a>
         </div>
 
-        <div id="installment__provider" class="d-flex justify-content-between align-items-center">
+        <div id="installment__provider" class="d-flex justify-content-between align-items-center w-100">
           <img src="../../../assets/images/valu.jpeg" alt="valu_logo">
           <p class="mb-0">Pay 3 interest-free payments of EFP 9,333,333.</p>
         </div>
 
-        <div class="d-flex align-items-center" id="cta__wrapper">
+        <div class="d-flex align-items-center justify-content-between w-100 mb-2 mb-md-0" id="cta__wrapper">
           <div class="dropdown">
-            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
               QTY
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -56,12 +57,53 @@
             </ul>
           </div>
 
-          <button class="btn">Add To Cart</button>
+          <button class="btn cart">Add To Cart</button>
         </div>
       </div>
 
-      <div class="col-md-3">
+      <div class="col-md-3 d-flex flex-column align-items-start" id="benifits__wrapper">
+        <div class="d-flex" id="benifits__single">
+          <img src="../../../assets/images/return.png" alt="free-return">
+          <div class="d-flex flex-column align-items-start">
+            <h6>FREE RETURNS</h6>
+            <p>Get free returns on eligible items</p>
+          </div>
+        </div>
+        <div class="d-flex" id="benifits__single">
+          <img src="../../../assets/images/shipping.png" alt="shipping">
+          <div class="d-flex flex-column align-items-start">
+            <h6>TRUSTED SHIPPING</h6>
+            <p>Free shipping when you spend EGP 200 and above on express items</p>
+          </div>
+        </div>
+        <div class="d-flex" id="benifits__single">
+          <img src="../../../assets/images/secure.png" alt="secure">
+          <div class="d-flex flex-column align-items-start">
+            <h6>SECURE SHOPPING</h6>
+            <p>Your data is always protected</p>
+          </div>
+        </div>
+      </div>
 
+    </div>
+
+    <div class="row">
+      <div class="col-12 product__overview">
+        <h5 class="additional_info_heading">Overview</h5>
+        <p>The PS5 console unleashes new gaming possibilities that you never anticipated. Experience lightning fast loading with an ultra-high speed SSD, deeper immersion with support for haptic feedback, adaptive triggers, and 3D Audio, and an all-new generation of incredible PlayStation games.
+          Explore uncharted virtual territories and slay dragons with this sleek Sony PlayStation 5 gaming console. The 825GB SSD allows ultra-fast load times, while 3-D audio output produces crisp acoustics. This Sony PlayStation 5 gaming console supports haptic feedback for effortless communication in multiplayer setups, and adaptive triggers allow immersive gameplay.Integrated I/OThe custom integration of the PS5 console's systems lets creators pull data from the SSD so quickly that they can design games in ways never before possible.</p>
+      </div>
+
+      <div class="col-12 product__overview">
+        <h5 class="additional_info_heading">Highlights</h5>
+        <ul>
+          <li>Lightning Speed - Harness the power of a custom CPU, GPU, and SSD with Integrated I/O that rewrite the rules of what a PlayStation console can do.</li>
+          <li>Stunning Games - Marvel at incredible graphics and experience new PS5 features.</li>
+          <li>Breathtaking Immersion - Discover a deeper gaming experience with support for haptic feedback, adaptive triggers, and 3D Audio technology.</li>
+          <li>Enjoy smooth and fluid high-frame-rate gameplay at up to 120fps for compatible games.</li>
+          <li>With an HDR tv, supported PS5 games display an unbelievably vibrant and lifelike range of colours</li>
+          <li>Enjoy a comfortable, evolved design with an iconic layout and enhanced sticks, intuitively interact with select games using the integrated motion sensor Hear higher-fidelity sound effects through the built-in speaker in supported games</li>
+        </ul>
       </div>
     </div>
   </div>
