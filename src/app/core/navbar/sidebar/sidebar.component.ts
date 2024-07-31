@@ -10,11 +10,13 @@ import { Category } from '../../../products/categories'; // Adjust the path as n
 export class SidebarComponent implements OnInit {
   @Output() categorySelected = new EventEmitter<{ slug: string, name: string }>();
   categories: Category[] = [];
+  brandCounts: { brand_name: string, count: number }[] = [];
 
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
     this.loadCategories();
+    this.loadBrandCounts();
   }
 
   private loadCategories(): void {
@@ -31,6 +33,12 @@ export class SidebarComponent implements OnInit {
         console.error('Error fetching categories:', error);
       }
     );
+  }
+
+  // fetch the data of brand name and it's count
+  private loadBrandCounts(): void {
+    this.brandCounts = this.productService.getBrandCounts();
+    console.log('Brand Counts:', this.brandCounts);
   }
 
   selectCategory(category: Category): void {
