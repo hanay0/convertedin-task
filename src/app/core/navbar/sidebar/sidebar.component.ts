@@ -9,14 +9,16 @@ import { Category } from '../../../products/categories'; // Adjust the path as n
 })
 export class SidebarComponent implements OnInit {
   @Output() categorySelected = new EventEmitter<{ slug: string, name: string }>();
+  @Output() brandSelected = new EventEmitter<string[]>();
   categories: Category[] = [];
   brandCounts: { brand_name: string, count: number }[] = [];
+  noBrands: boolean = false;
+  selectedBrands: string[] = [];
 
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
     this.loadCategories();
-    this.loadBrandCounts();
   }
 
   private loadCategories(): void {
@@ -24,7 +26,6 @@ export class SidebarComponent implements OnInit {
       (categories: Category[]) => {
         this.categories = categories;
         console.log('Product Categories:', this.categories);
-        // Emit the first category by default
         if (this.categories.length > 0) {
           this.selectCategory(this.categories[0]);
         }
@@ -35,13 +36,39 @@ export class SidebarComponent implements OnInit {
     );
   }
 
-  // fetch the data of brand name and it's count
-  private loadBrandCounts(): void {
-    this.brandCounts = this.productService.getBrandCounts();
-    console.log('Brand Counts:', this.brandCounts);
+  private loadBrandCounts(category: string): void {
+    this.productService.getBrandsByCategory(category).subscribe(
+      (brandCounts) => {
+        this.brandCounts = brandCounts;
+        this.noBrands = this.brandCounts.length === 0;
+        console.log('Brand Counts:', this.brandCounts);
+      },
+      (error) => {
+        console.error('Error fetching brand counts:', error);
+        this.noBrands = true;
+      }
+    );
   }
 
   selectCategory(category: Category): void {
     this.categorySelected.emit({ slug: category.slug, name: category.name });
+    this.selectedBrands = [];
+    this.loadBrandCounts(category.slug);
+  }
+
+  onBrandChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const selectedBrand = input.value;
+
+    if (input.checked) {
+      this.selectedBrands.push(selectedBrand);
+    } else {
+      const index = this.selectedBrands.indexOf(selectedBrand);
+      if (index > -1) {
+        this.selectedBrands.splice(index, 1);
+      }
+    }
+
+    this.brandSelected.emit(this.selectedBrands);
   }
 }

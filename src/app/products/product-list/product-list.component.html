@@ -4,10 +4,11 @@
       <p>
         <span>{{ productCount }} Results for </span>
         <span>"{{ selectedCategoryName }}"</span>
-        </p>
+        <span *ngIf="selectedBrands.length > 0"> - Filtered by Brands</span>
+      </p>
     </div>
 
-    <div *ngFor="let product of products$ | async" class="product-single mb-3">
+    <div *ngFor="let product of filteredProducts$ | async" class="product-single mb-3">
       <div class="card d-flex flex-column align-items-center">
         <div class="card-img d-flex justify-content-center">
           <img [src]="product.thumbnail" class="card-img-top" alt="{{ product.title }}" />

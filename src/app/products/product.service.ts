@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators';
+import { tap, catchError, map } from 'rxjs/operators';
 import { ApiResponse } from '../products/product'; // Adjust path as needed
 import { Category } from './categories';
 import { Product } from '../products/product';
@@ -83,6 +83,32 @@ export class ProductService {
     }));
   }
 
+
+  getBrandsByCategory(category: string): Observable<{ brand_name: string, count: number }[]> {
+    return this.getProductsByCategory(category).pipe(
+      map(response => {
+        const brandCountMap: { [brandName: string]: number } = {};
+
+        response.products.forEach((product: Product) => {
+          if (product.brand) {
+            if (!brandCountMap[product.brand]) {
+              brandCountMap[product.brand] = 0;
+            }
+            brandCountMap[product.brand] += 1;
+          }
+        });
+
+        return Object.keys(brandCountMap).map(brandName => ({
+          brand_name: brandName,
+          count: brandCountMap[brandName]
+        }));
+      }),
+      catchError(error => {
+        console.error('Failed to fetch brands by category', error);
+        return of([]);
+      })
+    );
+  }
   /**
    * method to log array of objects , which contains brand names and it's count
    * data source : cachedData in LocalStorage
