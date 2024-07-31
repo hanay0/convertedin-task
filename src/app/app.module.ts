@@ -24,7 +24,10 @@ import { CommonModule } from '@angular/common';
     AppRoutingModule,
     CommonModule,
     StoreModule.forRoot({ products: productReducer }),
-    EffectsModule.forRoot([ProductEffects])
+    EffectsModule.forRoot([ProductEffects, ]),
+    StoreModule.forRoot({ products: productReducer }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    StoreRouterConnectingModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
