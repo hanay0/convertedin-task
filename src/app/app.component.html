@@ -4,10 +4,10 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-3">
-          <app-sidebar></app-sidebar>
+          <app-sidebar (categorySelected)="onCategorySelected($event)"></app-sidebar>
         </div>
-        <div class="col-9">
-          <app-product-list></app-product-list>
+        <div class="col-9" id="products-wrapper">
+          <app-product-list [selectedCategory]="selectedCategory" [selectedCategoryName]="selectedCategoryName"></app-product-list>
         </div>
       </div>
     </div>

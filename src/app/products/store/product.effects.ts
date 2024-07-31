@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { ProductService } from '../product.service';
-import { loadProducts, loadProductsSuccess, loadProductsFailure } from './product.actions';
+import { loadProducts, loadProductsSuccess, loadProductsFailure, loadProductsByCategory } from './product.actions';
 import { ApiResponse, Product } from '../product'; // Import the necessary types
 
 @Injectable()
@@ -13,9 +13,21 @@ export class ProductEffects {
       ofType(loadProducts),
       mergeMap(() =>
         this.productService.getProducts().pipe(
-          // Expecting ApiResponse type from the API
-          map((response: ApiResponse) => response.products), // Extracting products array
-          map(products => loadProductsSuccess({ products })), // Dispatching with extracted products
+          map((response: ApiResponse) => response.products),
+          map(products => loadProductsSuccess({ products })),
+          catchError(error => of(loadProductsFailure({ error })))
+        )
+      )
+    )
+  );
+
+  loadProductsByCategory$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(loadProductsByCategory),
+      mergeMap(({ category }) =>
+        this.productService.getProductsByCategory(category).pipe(
+          map((response: ApiResponse) => response.products),
+          map(products => loadProductsSuccess({ products })),
           catchError(error => of(loadProductsFailure({ error })))
         )
       )

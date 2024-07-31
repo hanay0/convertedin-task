@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { ApiResponse } from '../products/product'; // Adjust path as needed
 import { Category } from './categories';
+import { Product } from '../products/product';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +40,10 @@ export class ProductService {
         })
       );
     }
+  }
+
+  getProductsByCategory(category: string): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(`${this.baseURL}/category/${category}`);
   }
 
   // get all categories

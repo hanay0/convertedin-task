@@ -1,26 +1,25 @@
 <div class="container-fluid">
-    <div class="row flex-wrap justify-content-between">
-      <div class="col-12">
-        <p>136 Results for "Electronics & Mobiles in Egypt"</p>
-      </div>
+  <div class="row flex-wrap justify-content-start">
+    <div class="col-12" id="result">
+      <p>
+        <span>{{ productCount }} Results for </span>
+        <span>"{{ selectedCategoryName }}"</span>
+        </p>
+    </div>
 
-      <!-- <div *ngFor="let product of products$ | async" class="col-12 col-md-4 col-lg-3 mb-3"> -->
-      <div *ngFor="let product of products$ | async" class="product-single mb-3">
-        <div class="card d-flex flex-column align-items-center">
-          <div class="card-img d-flex justify-content-center">
-            <img [src]="product.thumbnail" class="card-img-top" alt="{{ product.title }}" />
-          </div>
-          <div class="card-body w-100">
-            <h5 class="card-title">{{ product.title }}</h5>
-            <p class="price d-flex">
-              <span>EGP</span>
-              <span>{{ product.price }}</span>
-            </p>
-            <!-- <p class="card-text">{{ product.description }}</p> -->
-            <!-- <a [routerLink]="['/product', product.id]" class="btn btn-primary">View Details</a> -->
-          </div>
+    <div *ngFor="let product of products$ | async" class="product-single mb-3">
+      <div class="card d-flex flex-column align-items-center">
+        <div class="card-img d-flex justify-content-center">
+          <img [src]="product.thumbnail" class="card-img-top" alt="{{ product.title }}" />
+        </div>
+        <div class="card-body w-100">
+          <h5 class="card-title">{{ product.title }}</h5>
+          <p class="price d-flex">
+            <span>EGP</span>
+            <span>{{ product.price }}</span>
+          </p>
         </div>
       </div>
     </div>
   </div>
-  
+</div>
