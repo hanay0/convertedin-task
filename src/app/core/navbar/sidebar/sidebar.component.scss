@@ -1,10 +1,13 @@
 .sidebar {
-    margin-top: 40px;
+    padding-top: 75px;
 
     .categories {
         padding-left: 14px;
         padding-top: 7.33px;
-        // overflow: hidden;
+        
+        h6 {
+            margin-bottom: 28px;
+        }
 
         ul {
             &.categories {
@@ -21,6 +24,7 @@
                         font-weight: 400;
                         color: #344054;
                         text-decoration: none;
+                        cursor: pointer;
     
                         &.active {
                             font-weight: 600;
