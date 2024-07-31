@@ -2,21 +2,21 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
-import { AppRoutingModule } from '../app-routing.module';
-import { RouterModule } from '@angular/router';
 import { ProductsRoutingModule } from './products-routing.module';
+import { ProductsWrapperComponent } from './products-wrapper/products-wrapper.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 
 
 @NgModule({
   declarations: [
-    // ProductListComponent,
+    ProductListComponent,
     ProductDetailsComponent,
+    ProductsWrapperComponent,
+    SidebarComponent
   ],
   imports: [
     CommonModule,
-    // AppRoutingModule,// this was causing the error in the console about the route
-    RouterModule,
     ProductsRoutingModule
   ]
 })

@@ -9,15 +9,14 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './core/navbar/navbar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CommonModule } from '@angular/common';
-import { ProductListComponent } from './products/product-list/product-list.component';
-import { SidebarComponent } from './core/navbar/sidebar/sidebar.component';
+// import { ProductListComponent } from './products/product-list/product-list.component';
+// import { SidebarComponent } from './core/navbar/sidebar/sidebar.component';
+// import { ProductDetailsComponent } from './products/product-details/product-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    ProductListComponent,
-    SidebarComponent
   ],
   imports: [
     BrowserModule,

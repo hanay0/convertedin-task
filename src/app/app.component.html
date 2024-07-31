@@ -1,15 +1,2 @@
-<router-outlet>
-  <app-navbar (searchQueryChanged)="searchQuery = $event"></app-navbar>
-  <section>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-3">
-          <app-sidebar (categorySelected)="onCategorySelected($event)"></app-sidebar>
-        </div>
-        <div class="col-9" id="products-wrapper">
-          <app-product-list [selectedCategory]="selectedCategory" [selectedCategoryName]="selectedCategoryName" [searchQuery]="searchQuery"></app-product-list>
-        </div>
-      </div>
-    </div>
-  </section>
-</router-outlet>
+<app-navbar (searchQueryChanged)="searchQuery = $event"></app-navbar>
+<router-outlet></router-outlet>

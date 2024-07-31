@@ -9,18 +9,31 @@
     </div>
 
     <div *ngFor="let product of filteredProducts$ | async" class="product-single mb-3">
-      <div class="card d-flex flex-column align-items-center">
-        <div class="card-img d-flex justify-content-center">
-          <img [src]="product.thumbnail" class="card-img-top" alt="{{ product.title }}" />
+      <a [routerLink]="['/products', product.id]" class="text-decoration-none">
+        <div class="card d-flex flex-column align-items-center">
+          <div class="card-img d-flex justify-content-center">
+            <img [src]="product.thumbnail" class="card-img-top" alt="{{ product.title }}" />
+          </div>
+          <div class="card-body w-100">
+            <h5 class="card-title">{{ product.title }}</h5>
+            <div class="d-flex justify-content-between align-items-center">
+              <p class="price mb-0 d-flex">
+                <span>EGP</span>
+                <span>{{ product.price }}</span>
+              </p>
+              <div class="d-flex align-items-baseline" id="rate">
+                <span class="d-flex">
+                  <img src="../../../assets/images/star.png" alt="star">
+                </span>
+                <p class="d-flex align-items-center mb-0">
+                  <span id="rate-num">{{ product.rating | number:'1.1-1' }}</span>
+                  <span id="reviews-count">(434)</span>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="card-body w-100">
-          <h5 class="card-title">{{ product.title }}</h5>
-          <p class="price d-flex">
-            <span>EGP</span>
-            <span>{{ product.price }}</span>
-          </p>
-        </div>
-      </div>
+      </a>
     </div>
   </div>
 </div>

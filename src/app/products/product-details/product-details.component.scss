@@ -1,0 +1,134 @@
+#product-details-wrapper {
+    #product__info {
+        h1 {
+            font-size: 24px;
+            font-weight: 500;
+            line-height: 29.05px;;
+            color: #344054;
+        }
+
+        #rate {
+            border: 1px solid #EAECF0;
+            border-radius: 15px;
+            padding: 3px 5px;
+            margin-bottom: 16px;
+
+            & > span {
+                width: 9px;
+                height: 9px;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            #rate-num {
+                font-size: 10.29px;
+                font-weight: 500;
+                color: #667085;
+            }
+
+            #reviews-count {
+                font-size: 10.29px;
+                font-weight: 500;
+                line-height: 12.44px;
+                color: #D0D5DD;
+            }
+        }
+
+        #price__wrapper {
+            span {
+                &:first-of-type {
+                    font-size: 14.84px;
+                    font-weight: 500;
+                    color: #98A2B3;
+                    margin-right: 5px;
+                }
+
+                &:last-of-type {
+                    font-size: 21.21px;
+                    font-weight: 700;
+                    color: #1D2939;
+                }
+            }
+        }
+
+        #delivery__wrapper {
+            width: 216px;
+            padding: 8px;
+            background-color: #fff;
+            border-radius: 4px;
+            margin-bottom: 12px;
+
+            p {
+                margin-bottom: 0;
+
+                &:first-of-type {
+                    font-size: 10.29px;
+                    font-weight: 500;
+                    line-height: 12.46px;
+                    margin-bottom: 4px;
+                    color: #667085;
+                }
+
+                &:last-of-type {
+                    font-size: 10.29px;
+                    font-weight: 700;
+                    line-height: 12.46px;
+                    color: #1D2939;
+                }
+            }
+        }
+
+        #monthly__plans {
+            padding: 16px;
+            margin-bottom: 12px;
+            background-color: #FEFBE8;
+
+            p {
+                font-size: 10.29px;
+                font-weight: 500;
+                line-height: 12.46px;
+                color: #667085;
+                margin-bottom: 0;
+                margin-right: 16px;
+            }
+
+            a {
+                font-size: 10.29px;
+                font-weight: 700;
+                line-height: 12.46px;
+                color: #1D2939;
+            }
+        }
+
+        #installment__provider {
+            width: 455px;
+            padding: 16px;
+            background-color: #fff;
+            border-radius: 4px;
+            margin-bottom: 27px;
+
+            img {
+                width: 80px;
+                height: 50px;
+                object-fit: contain;
+            }
+
+            p {
+                font-size: 13px;
+            }
+        }
+
+        #cta__wrapper {
+            .dropdowm {
+                background-color: transparent;
+                .dropdown-toggle {
+                    background-color: #EAECF0;
+                    color: #98A2B3;
+                }
+            }
+        }
+    }
+}

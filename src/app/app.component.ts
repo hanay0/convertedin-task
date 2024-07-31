@@ -10,9 +10,4 @@ export class AppComponent {
   selectedCategory: string = '';
   selectedCategoryName: string = '';
   searchQuery: string = '';  // Add this property
-
-  onCategorySelected(event: { slug: string, name: string }): void {
-    this.selectedCategory = event.slug;
-    this.selectedCategoryName = event.name;
-  }
 }

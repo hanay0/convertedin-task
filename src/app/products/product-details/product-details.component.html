@@ -1,13 +1,67 @@
-<div class="container" *ngIf="product$ | async as product">
+<div class="container-fluid" id="product-details-wrapper" *ngIf="product$ | async as product">
     <div class="row">
-      <div class="col-md-6">
-        <img [src]="product.thumbnail" class="img-fluid" alt="{{ product.title }}" />
+      <div class="col-md-5">
+        <div class="row">
+          <div class="col-md-3 d-flex flex-column">
+            <img *ngFor="let item of product.images" src="{{item}}" alt="product">
+          </div>
+          <div class="col-md-9">
+            <img [src]="product.thumbnail" class="img-fluid" alt="{{ product.title }}" />
+          </div>
+        </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-4 d-flex flex-column align-items-start" id="product__info">
         <h1>{{ product.title }}</h1>
         <p>{{ product.description }}</p>
-        <p><strong>Price:</strong> ${{ product.price }}</p>
-        <button class="btn btn-primary">Add to Cart</button>
+
+        <div class="d-flex align-items-baseline" id="rate">
+          <span class="d-flex">
+            <img src="../../../assets/images/star.png" alt="star">
+          </span>
+          <p class="d-flex align-items-center mb-0">
+            <span class="mx-1" id="rate-num">{{ product.rating | number:'1.1-1' }}</span>
+            <span id="reviews-count">(434)</span>
+          </p>
+        </div>
+
+        <p id="price__wrapper">
+          <span class="me-1">EGP</span>
+          <span>{{ product.price }}</span>
+        </p>
+        
+        <div class="d-flex flex-column" id="delivery__wrapper">
+          <p>{{ product.shippingInformation }}</p>
+          <p>{{ product.availabilityStatus }}</p>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center" id="monthly__plans">
+          <p>Monthly payment plans from EGP 778</p>
+          <a href="https://www.converted.in/">View more details</a>
+        </div>
+
+        <div id="installment__provider" class="d-flex justify-content-between align-items-center">
+          <img src="../../../assets/images/valu.jpeg" alt="valu_logo">
+          <p class="mb-0">Pay 3 interest-free payments of EFP 9,333,333.</p>
+        </div>
+
+        <div class="d-flex align-items-center" id="cta__wrapper">
+          <div class="dropdown">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              QTY
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </div>
+
+          <button class="btn">Add To Cart</button>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+
       </div>
     </div>
   </div>

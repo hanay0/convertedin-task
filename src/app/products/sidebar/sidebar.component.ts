@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { ProductService } from '../../../products/product.service'; // Adjust the path as needed
-import { Category } from '../../../products/categories'; // Adjust the path as needed
+import { ProductService } from '../../products/product.service';
+import { Category } from '../../products/categories';
 
 @Component({
   selector: 'app-sidebar',

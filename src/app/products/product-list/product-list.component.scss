@@ -22,54 +22,89 @@
     width: 20%;
     display: flex;
     flex-direction: column;
-    .card {
-        border: none;
-        background-color: transparent;
+    a {
         display: flex;
+        flex: 1;
         flex-direction: column;
-        height: 100%; /* Make sure the card takes up the full height of the parent */
 
-        .card-body,
-        .card-img {
-            background-color: #fff;
-            margin-bottom: 5px;
-        }
-
-        .card-img {
-            img {
-                width: 138px;
-                height: 164px;
-                object-fit: cover;
-            }
-        }
-
-        .card-body {
-            padding: 14px 16px;
-            flex-grow: 1; /* Allow card-body to grow and fill available space */
+        .card {
+            border: none;
+            background-color: transparent;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Space out the content within the card body */
-            
-            .card-title {
-                font-size: 12px;
-                font-weight: 500;
-                margin-bottom: auto; /* Pushes the title to the top */
+            height: 100%; /* Make sure the card takes up the full height of the parent */
+    
+            .card-body,
+            .card-img {
+                background-color: #fff;
+                margin-bottom: 5px;
             }
+    
+            .card-img {
+                img {
+                    width: 138px;
+                    height: 164px;
+                    object-fit: cover;
+                }
+            }
+    
+            .card-body {
+                padding: 14px 16px;
+                flex-grow: 1; /* Allow card-body to grow and fill available space */
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between; /* Space out the content within the card body */
+                
+                .card-title {
+                    font-size: 12px;
+                    font-weight: 500;
+                    margin-bottom: auto; /* Pushes the title to the top */
+                }
+    
+                .price {
+                    align-items: baseline;
+    
+                    span {
+                        &:first-of-type {
+                            color: #98A2B3;
+                            font-size: 9px;
+                            margin-right: 4px;
+                        }
+    
+                        &:last-of-type {
+                            color: #1D2939;
+                            font-size: 13px;
+                            font-weight: 700;
+                        }
+                    }
+                }
 
-            .price {
-                align-items: baseline;
+                #rate {
+                    border: 1px solid #EAECF0;
+                    border-radius: 15px;
+                    padding: 3px 5px;
 
-                span {
-                    &:first-of-type {
-                        color: #98A2B3;
-                        font-size: 9px;
-                        margin-right: 4px;
+                    & > span {
+                        width: 9px;
+                        height: 9px;
+        
+                        img {
+                            width: 100%;
+                            height: 100%;
+                        }
                     }
 
-                    &:last-of-type {
-                        color: #1D2939;
-                        font-size: 13px;
-                        font-weight: 700;
+                    #rate-num {
+                        font-size: 8.29px;
+                        font-weight: 500;
+                        color: #667085;
+                    }
+    
+                    #reviews-count {
+                        font-size: 8.29px;
+                        font-weight: 500;
+                        line-height: 12.44px;
+                        color: #D0D5DD;
                     }
                 }
             }
