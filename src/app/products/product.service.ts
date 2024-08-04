@@ -21,17 +21,22 @@ export class ProductService {
   }
 
   getProducts(): Observable<ApiResponse> {
+    console.log('getProducts method called');
+
     const cachedData = localStorage.getItem(this.cacheKey);
     const cacheTime = localStorage.getItem(`${this.cacheKey}-time`);
 
     if (cachedData && cacheTime && (Date.now() - +cacheTime < this.cacheExpiration)) {
+      console.log('Using cached data');
       return of(JSON.parse(cachedData) as ApiResponse); // Ensure correct type
     } else {
       return this.http.get<ApiResponse>(`${this.baseURL}?limit=100`).pipe(
         tap(response => {
+          console.log('Fetched data from API:', response);
           // Cache the entire ApiResponse object
           localStorage.setItem(this.cacheKey, JSON.stringify(response));
           localStorage.setItem(`${this.cacheKey}-time`, Date.now().toString());
+          console.log('Data stored in localStorage');
         }),
         catchError(error => {
           console.error('Failed to fetch products', error);

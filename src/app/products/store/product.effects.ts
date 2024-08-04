@@ -11,26 +11,40 @@ export class ProductEffects {
   loadProducts$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loadProducts),
-      mergeMap(() =>
-        this.productService.getProducts().pipe(
+      mergeMap(() => {
+        // console.log('loadProducts action received');
+        return this.productService.getProducts().pipe(
           map((response: ApiResponse) => response.products),
-          map(products => loadProductsSuccess({ products })),
-          catchError(error => of(loadProductsFailure({ error })))
-        )
-      )
+          map(products => {
+            // console.log('Dispatching loadProductsSuccess action');
+            return loadProductsSuccess({ products });
+          }),
+          catchError(error => {
+            console.error('Error fetching products:', error);
+            return of(loadProductsFailure({ error: error.message }));
+          })
+        );
+      })
     )
   );
 
   loadProductsByCategory$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loadProductsByCategory),
-      mergeMap(({ category }) =>
-        this.productService.getProductsByCategory(category).pipe(
+      mergeMap(({ category }) => {
+        // console.log(`loadProductsByCategory action received for category: ${category}`);
+        return this.productService.getProductsByCategory(category).pipe(
           map((response: ApiResponse) => response.products),
-          map(products => loadProductsSuccess({ products })),
-          catchError(error => of(loadProductsFailure({ error })))
-        )
-      )
+          map(products => {
+            // console.log('Dispatching loadProductsSuccess action');
+            return loadProductsSuccess({ products });
+          }),
+          catchError(error => {
+            console.error('Error fetching products by category:', error);
+            return of(loadProductsFailure({ error: error.message }));
+          })
+        );
+      })
     )
   );
 
@@ -39,3 +53,4 @@ export class ProductEffects {
     private productService: ProductService
   ) {}
 }
+

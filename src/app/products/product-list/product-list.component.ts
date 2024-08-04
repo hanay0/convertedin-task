@@ -5,6 +5,7 @@ import { map, debounceTime  } from 'rxjs/operators';
 import { loadProductsByCategory } from '../store/product.actions';
 import { Product } from '../product';
 import { selectAllProducts } from '../store/product.selectors';
+import { loadProducts } from '../store/product.actions';
 
 @Component({
   selector: 'app-product-list',
@@ -26,6 +27,7 @@ export class ProductListComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.updateProductList();
+    this.store.dispatch(loadProducts());
   }
 
   ngOnChanges(changes: SimpleChanges): void {
