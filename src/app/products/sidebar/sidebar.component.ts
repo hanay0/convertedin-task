@@ -70,7 +70,7 @@ export class SidebarComponent implements OnInit {
     }
   
     this.selectedBrands = updatedSelectedBrands;
-    console.log('Selected Brands:', this.selectedBrands); // Debugging line
+    // console.log('Selected Brands:', this.selectedBrands);
     this.brandSelected.emit(this.selectedBrands);
     this.store.dispatch(updateSelectedBrands({ selectedBrands: this.selectedBrands }));
   }

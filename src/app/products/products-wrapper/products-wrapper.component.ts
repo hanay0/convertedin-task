@@ -24,6 +24,6 @@ export class ProductsWrapperComponent {
 
   onBrandsSelected(brands: string[]): void {
     this.selectedBrands = brands;
-    console.log('Brands received in ProductsWrapper:', this.selectedBrands);
+    // console.log('Brands received in ProductsWrapper:', this.selectedBrands);
   }
 }

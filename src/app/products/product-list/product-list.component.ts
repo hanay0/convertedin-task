@@ -47,7 +47,7 @@ export class ProductListComponent implements OnInit, OnChanges {
       map((products: Product[]) => {
         let filtered = products;
   
-        console.log('Selected Brands:', this.selectedBrands); // Debugging line
+        // console.log('Selected Brands:', this.selectedBrands);
   
         if (this.selectedBrands.length > 0) {
           filtered = filtered.filter(product => this.selectedBrands.includes(product.brand));
@@ -57,7 +57,7 @@ export class ProductListComponent implements OnInit, OnChanges {
           filtered = filtered.filter(product => product.title.toLowerCase().includes(this.searchQuery.toLowerCase()));
         }
   
-        console.log('Filtered Products:', filtered); // Debugging line
+        // console.log('Filtered Products:', filtered);
         return filtered;
       })
     );
