@@ -13,3 +13,6 @@ export const loadProductsFailure = createAction(
 );
 
 export const updateSearchQuery = createAction('[Product List] Update Search Query', props<{ searchQuery: string }>());
+
+export const updateSelectedBrands = createAction('[Product List] Update Selected Brands', props<{ selectedBrands: string[] }>());
+export const resetProductList = createAction('[Product List] Reset Product List');

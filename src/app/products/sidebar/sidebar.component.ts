@@ -1,4 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { ProductState } from '../store/product.reducer';
+import { updateSelectedBrands } from '../store/product.actions';
 import { ProductService } from '../../products/product.service';
 import { Category } from '../../products/categories';
 
@@ -15,7 +18,7 @@ export class SidebarComponent implements OnInit {
   noBrands: boolean = false;
   selectedBrands: string[] = [];
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, private store: Store<ProductState>) {}
 
   ngOnInit(): void {
     this.loadCategories();
@@ -25,7 +28,6 @@ export class SidebarComponent implements OnInit {
     this.productService.getCategories().subscribe(
       (categories: Category[]) => {
         this.categories = categories;
-        // console.log('Product Categories:', this.categories);
         if (this.categories.length > 0) {
           this.selectCategory(this.categories[0]);
         }
@@ -41,7 +43,6 @@ export class SidebarComponent implements OnInit {
       (brandCounts) => {
         this.brandCounts = brandCounts;
         this.noBrands = this.brandCounts.length === 0;
-        // console.log('Brand Counts:', this.brandCounts);
       },
       (error) => {
         console.error('Error fetching brand counts:', error);
@@ -54,21 +55,23 @@ export class SidebarComponent implements OnInit {
     this.categorySelected.emit({ slug: category.slug, name: category.name });
     this.selectedBrands = [];
     this.loadBrandCounts(category.slug);
+    this.store.dispatch(updateSelectedBrands({ selectedBrands: [] }));
   }
 
   onBrandChange(event: Event): void {
     const input = event.target as HTMLInputElement;
     const selectedBrand = input.value;
+    let updatedSelectedBrands;
 
     if (input.checked) {
-      this.selectedBrands.push(selectedBrand);
+      updatedSelectedBrands = [...this.selectedBrands, selectedBrand];
     } else {
-      const index = this.selectedBrands.indexOf(selectedBrand);
-      if (index > -1) {
-        this.selectedBrands.splice(index, 1);
-      }
+      updatedSelectedBrands = this.selectedBrands.filter(brand => brand !== selectedBrand);
     }
-
+  
+    this.selectedBrands = updatedSelectedBrands;
+    console.log('Selected Brands:', this.selectedBrands); // Debugging line
     this.brandSelected.emit(this.selectedBrands);
+    this.store.dispatch(updateSelectedBrands({ selectedBrands: this.selectedBrands }));
   }
 }

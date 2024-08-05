@@ -17,3 +17,8 @@ export const selectProductError = createSelector(
   selectProductState,
   (state: ProductState) => state.error
 );
+
+export const selectSelectedBrands = createSelector(
+  selectProductState,
+  (state: ProductState) => state.selectedBrands
+);

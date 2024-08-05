@@ -1,19 +1,3 @@
-// import { NgModule, isDevMode  } from '@angular/core';
-// import { BrowserModule } from '@angular/platform-browser';
-// import { StoreModule } from '@ngrx/store';
-// import { EffectsModule } from '@ngrx/effects';
-// import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-// import { HttpClientModule } from '@angular/common/http';
-// import { productReducer } from './products/store/product.reducer';
-// import { ProductEffects } from './products/store/product.effects';
-// import { AppComponent } from './app.component';
-// import { NavbarComponent } from './layout/navbar/navbar.component';
-// import { AppRoutingModule } from './app-routing.module';
-// import { CommonModule } from '@angular/common';
-// import { ProductListComponent } from './products/product-list/product-list.component';
-// import { SidebarComponent } from './core/navbar/sidebar/sidebar.component';
-// import { ProductDetailsComponent } from './products/product-details/product-details.component';
-
 import { HttpClientModule } from "@angular/common/http";
 import { AppComponent } from "./app.component";
 import { NavbarComponent } from "./layout/navbar/navbar.component";

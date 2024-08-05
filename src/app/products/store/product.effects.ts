@@ -3,8 +3,8 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { ProductService } from '../product.service';
-import { loadProducts, loadProductsSuccess, loadProductsFailure, loadProductsByCategory } from './product.actions';
-import { ApiResponse, Product } from '../product'; // Import the necessary types
+import { loadProducts, loadProductsSuccess, loadProductsFailure, loadProductsByCategory, updateSelectedBrands, resetProductList } from './product.actions';
+import { ApiResponse, Product } from '../product';
 
 @Injectable()
 export class ProductEffects {
@@ -12,10 +12,10 @@ export class ProductEffects {
     this.actions$.pipe(
       ofType(loadProducts),
       mergeMap(() =>
-        this.productService.getProducts().pipe(  
-
+        this.productService.getProducts().pipe(
           map((response: ApiResponse) => response.products),
-          map(products => loadProductsSuccess({ products }))
+          map(products => loadProductsSuccess({ products })),
+          catchError(error => of(loadProductsFailure({ error: error.message })))
         )
       )
     )
@@ -24,19 +24,23 @@ export class ProductEffects {
   loadProductsByCategory$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loadProductsByCategory),
-      mergeMap(({ category }) => {
-        // console.log(`loadProductsByCategory action received for category: ${category}`);
-        return this.productService.getProductsByCategory(category).pipe(
+      mergeMap(({ category }) =>
+        this.productService.getProductsByCategory(category).pipe(
           map((response: ApiResponse) => response.products),
-          map(products => {
-            // console.log('Dispatching loadProductsSuccess action');
-            return loadProductsSuccess({ products });
-          }),
-          catchError(error => {
-            console.error('Error fetching products by category:', error);
-            return of(loadProductsFailure({ error: error.message }));
-          })
-        );
+          map(products => loadProductsSuccess({ products })),
+          catchError(error => of(loadProductsFailure({ error: error.message })))
+        )
+      )
+    )
+  );
+
+  updateSelectedBrands$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(updateSelectedBrands),
+      map(({ selectedBrands }) => {
+        // Filter products by selected brands logic goes here
+        // Assuming you have access to the current product list in the state
+        return resetProductList();
       })
     )
   );
@@ -46,4 +50,3 @@ export class ProductEffects {
     private productService: ProductService
   ) {}
 }
-
