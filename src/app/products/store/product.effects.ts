@@ -11,20 +11,13 @@ export class ProductEffects {
   loadProducts$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loadProducts),
-      mergeMap(() => {
-        // console.log('loadProducts action received');
-        return this.productService.getProducts().pipe(
+      mergeMap(() =>
+        this.productService.getProducts().pipe(  
+
           map((response: ApiResponse) => response.products),
-          map(products => {
-            // console.log('Dispatching loadProductsSuccess action');
-            return loadProductsSuccess({ products });
-          }),
-          catchError(error => {
-            console.error('Error fetching products:', error);
-            return of(loadProductsFailure({ error: error.message }));
-          })
-        );
-      })
+          map(products => loadProductsSuccess({ products }))
+        )
+      )
     )
   );
 

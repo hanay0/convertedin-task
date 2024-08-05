@@ -4,7 +4,7 @@ import { Observable, Subject  } from 'rxjs';
 import { map, debounceTime  } from 'rxjs/operators';
 import { loadProductsByCategory } from '../store/product.actions';
 import { Product } from '../product';
-import { selectAllProducts } from '../store/product.selectors';
+import { selectAllProducts, selectProductState } from '../store/product.selectors';
 import { loadProducts } from '../store/product.actions';
 
 @Component({
@@ -20,7 +20,6 @@ export class ProductListComponent implements OnInit, OnChanges {
   products$: Observable<Product[]>;
   filteredProducts$!: Observable<Product[]>;
   productCount: number = 0;
-
   constructor(private store: Store) {
     this.products$ = this.store.pipe(select(selectAllProducts));
   }
@@ -28,6 +27,10 @@ export class ProductListComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.updateProductList();
     this.store.dispatch(loadProducts());
+    this.store.select(selectProductState).subscribe(state => {
+      this.searchQuery = state.searchQuery;
+      this.updateProductList();
+    })
   }
 
   ngOnChanges(changes: SimpleChanges): void {

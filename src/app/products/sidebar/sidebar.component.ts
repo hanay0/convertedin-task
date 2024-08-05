@@ -25,7 +25,7 @@ export class SidebarComponent implements OnInit {
     this.productService.getCategories().subscribe(
       (categories: Category[]) => {
         this.categories = categories;
-        console.log('Product Categories:', this.categories);
+        // console.log('Product Categories:', this.categories);
         if (this.categories.length > 0) {
           this.selectCategory(this.categories[0]);
         }
@@ -41,7 +41,7 @@ export class SidebarComponent implements OnInit {
       (brandCounts) => {
         this.brandCounts = brandCounts;
         this.noBrands = this.brandCounts.length === 0;
-        console.log('Brand Counts:', this.brandCounts);
+        // console.log('Brand Counts:', this.brandCounts);
       },
       (error) => {
         console.error('Error fetching brand counts:', error);

@@ -11,3 +11,5 @@ export const loadProductsFailure = createAction(
   '[Product List] Load Products Failure',
   props<{ error: string }>()
 );
+
+export const updateSearchQuery = createAction('[Product List] Update Search Query', props<{ searchQuery: string }>());

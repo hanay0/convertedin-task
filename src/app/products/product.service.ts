@@ -21,13 +21,13 @@ export class ProductService {
   }
 
   getProducts(): Observable<ApiResponse> {
-    console.log('getProducts method called');
+    // console.log('getProducts method called');
 
     const cachedData = localStorage.getItem(this.cacheKey);
     const cacheTime = localStorage.getItem(`${this.cacheKey}-time`);
 
     if (cachedData && cacheTime && (Date.now() - +cacheTime < this.cacheExpiration)) {
-      console.log('Using cached data');
+      // console.log('Using cached data');
       return of(JSON.parse(cachedData) as ApiResponse); // Ensure correct type
     } else {
       return this.http.get<ApiResponse>(`${this.baseURL}?limit=100`).pipe(
@@ -120,6 +120,6 @@ export class ProductService {
    */
   logBrandCounts(): void {
     const brandCounts = this.getBrandCounts();
-    console.log('Brand Counts:', brandCounts);
+    // console.log('Brand Counts:', brandCounts);
   }
 }
